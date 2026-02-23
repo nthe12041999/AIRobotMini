@@ -1,0 +1,15 @@
+{
+  "name": "robot-ai",
+  "version": "1.0.0",
+  "description": "Robot AI with Edge TTS",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "install-deps": "npm install"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "edge-tts-universal": "^1.3.3",
+    "express": "^4.18.2"
+  }
+}

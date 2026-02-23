@@ -1,0 +1,3 @@
+{
+  "summarizeTemplate": "Tôi có đoạn nội dung này:'{content}' Yêu cầu: Lấy nội dung trên (là Transcript của video) thực hiện {userPrompt}. Viết bằng ngôn ngữ giống với ngôn ngữ của nội dung trên (ví dụ nội dung trên là tiếng anh thì kết quả là tiếng anh ...). Trả lời theo mô tuýp: chỉ có nội dung yêu cầu thôi, viết liền mạch trong 1 đoạn văn duy nhất, không xuống dòng, không đánh số"
+}

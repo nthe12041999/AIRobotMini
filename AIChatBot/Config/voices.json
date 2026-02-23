@@ -1,0 +1,127 @@
+{
+  "English": [
+    { "name": "Jenny (Nữ)", "voiceId": "en-US-JennyNeural", "gender": "Female" },
+    { "name": "Aria (Nữ)", "voiceId": "en-US-AriaNeural", "gender": "Female" },
+    { "name": "Michelle (Nữ)", "voiceId": "en-US-MichelleNeural", "gender": "Female" },
+    { "name": "Sara (Nữ)", "voiceId": "en-US-SaraNeural", "gender": "Female" },
+    { "name": "Ana (Nữ trẻ)", "voiceId": "en-US-AnaNeural", "gender": "Female" },
+    { "name": "Christopher (Nam)", "voiceId": "en-US-ChristopherNeural", "gender": "Male" },
+    { "name": "Guy (Nam)", "voiceId": "en-US-GuyNeural", "gender": "Male" },
+    { "name": "Eric (Nam)", "voiceId": "en-US-EricNeural", "gender": "Male" },
+    { "name": "Roger (Nam)", "voiceId": "en-US-RogerNeural", "gender": "Male" },
+    { "name": "Steffan (Nam)", "voiceId": "en-US-SteffanNeural", "gender": "Male" },
+    { "name": "Sonia (Nữ)", "voiceId": "en-GB-SoniaNeural", "gender": "Female" },
+    { "name": "Libby (Nữ)", "voiceId": "en-GB-LibbyNeural", "gender": "Female" },
+    { "name": "Maisie (Nữ trẻ)", "voiceId": "en-GB-MaisieNeural", "gender": "Female" },
+    { "name": "Ryan (Nam)", "voiceId": "en-GB-RyanNeural", "gender": "Male" },
+    { "name": "Thomas (Nam)", "voiceId": "en-GB-ThomasNeural", "gender": "Male" },
+    { "name": "Natasha (Nữ)", "voiceId": "en-AU-NatashaNeural", "gender": "Female" },
+    { "name": "William (Nam)", "voiceId": "en-AU-WilliamNeural", "gender": "Male" }
+  ],
+  "Vietnamese": [
+    { "name": "HoaiMy (Nữ)", "voiceId": "vi-VN-HoaiMyNeural", "gender": "Female" },
+    { "name": "NamMinh (Nam)", "voiceId": "vi-VN-NamMinhNeural", "gender": "Male" }
+  ],
+  "Japanese": [
+    { "name": "Nanami (Nữ)", "voiceId": "ja-JP-NanamiNeural", "gender": "Female" },
+    { "name": "Mayu (Nữ)", "voiceId": "ja-JP-MayuNeural", "gender": "Female" },
+    { "name": "Shiori (Nữ)", "voiceId": "ja-JP-ShioriNeural", "gender": "Female" },
+    { "name": "Keita (Nam)", "voiceId": "ja-JP-KeitaNeural", "gender": "Male" },
+    { "name": "Daichi (Nam)", "voiceId": "ja-JP-DaichiNeural", "gender": "Male" }
+  ],
+  "Korean": [
+    { "name": "SunHi (Nữ)", "voiceId": "ko-KR-SunHiNeural", "gender": "Female" },
+    { "name": "JiMin (Nữ)", "voiceId": "ko-KR-JiMinNeural", "gender": "Female" },
+    { "name": "InJoon (Nam)", "voiceId": "ko-KR-InJoonNeural", "gender": "Male" },
+    { "name": "BongJin (Nam)", "voiceId": "ko-KR-BongJinNeural", "gender": "Male" }
+  ],
+  "Chinese (Mandarin)": [
+    { "name": "Xiaoxiao (Nữ)", "voiceId": "zh-CN-XiaoxiaoNeural", "gender": "Female" },
+    { "name": "Xiaoyi (Nữ)", "voiceId": "zh-CN-XiaoyiNeural", "gender": "Female" },
+    { "name": "Xiaomo (Nữ)", "voiceId": "zh-CN-XiaomoNeural", "gender": "Female" },
+    { "name": "Xiaorui (Nữ)", "voiceId": "zh-CN-XiaoruiNeural", "gender": "Female" },
+    { "name": "Yunyang (Nam)", "voiceId": "zh-CN-YunyangNeural", "gender": "Male" },
+    { "name": "Yunxi (Nam)", "voiceId": "zh-CN-YunxiNeural", "gender": "Male" },
+    { "name": "Yunjian (Nam)", "voiceId": "zh-CN-YunjianNeural", "gender": "Male" }
+  ],
+  "Chinese (Cantonese)": [
+    { "name": "HiuMaan (Nữ)", "voiceId": "zh-HK-HiuMaanNeural", "gender": "Female" },
+    { "name": "HiuGaai (Nữ)", "voiceId": "zh-HK-HiuGaaiNeural", "gender": "Female" },
+    { "name": "WanLung (Nam)", "voiceId": "zh-HK-WanLungNeural", "gender": "Male" }
+  ],
+  "Chinese (Taiwan)": [
+    { "name": "HsiaoChen (Nữ)", "voiceId": "zh-TW-HsiaoChenNeural", "gender": "Female" },
+    { "name": "HsiaoYu (Nữ)", "voiceId": "zh-TW-HsiaoYuNeural", "gender": "Female" },
+    { "name": "YunJhe (Nam)", "voiceId": "zh-TW-YunJheNeural", "gender": "Male" }
+  ],
+  "French": [
+    { "name": "Denise (Nữ)", "voiceId": "fr-FR-DeniseNeural", "gender": "Female" },
+    { "name": "Eloise (Nữ)", "voiceId": "fr-FR-EloiseNeural", "gender": "Female" },
+    { "name": "Henri (Nam)", "voiceId": "fr-FR-HenriNeural", "gender": "Male" },
+    { "name": "Alain (Nam)", "voiceId": "fr-FR-AlainNeural", "gender": "Male" }
+  ],
+  "German": [
+    { "name": "Katja (Nữ)", "voiceId": "de-DE-KatjaNeural", "gender": "Female" },
+    { "name": "Amala (Nữ)", "voiceId": "de-DE-AmalaNeural", "gender": "Female" },
+    { "name": "Conrad (Nam)", "voiceId": "de-DE-ConradNeural", "gender": "Male" },
+    { "name": "Killian (Nam)", "voiceId": "de-DE-KillianNeural", "gender": "Male" }
+  ],
+  "Spanish (Spain)": [
+    { "name": "Elvira (Nữ)", "voiceId": "es-ES-ElviraNeural", "gender": "Female" },
+    { "name": "Abril (Nữ)", "voiceId": "es-ES-AbrilNeural", "gender": "Female" },
+    { "name": "Alvaro (Nam)", "voiceId": "es-ES-AlvaroNeural", "gender": "Male" },
+    { "name": "Arnau (Nam)", "voiceId": "es-ES-ArnauNeural", "gender": "Male" }
+  ],
+  "Spanish (Mexico)": [
+    { "name": "Dalia (Nữ)", "voiceId": "es-MX-DaliaNeural", "gender": "Female" },
+    { "name": "Beatriz (Nữ)", "voiceId": "es-MX-BeatrizNeural", "gender": "Female" },
+    { "name": "Jorge (Nam)", "voiceId": "es-MX-JorgeNeural", "gender": "Male" }
+  ],
+  "Portuguese (Brazil)": [
+    { "name": "Francisca (Nữ)", "voiceId": "pt-BR-FranciscaNeural", "gender": "Female" },
+    { "name": "Leila (Nữ)", "voiceId": "pt-BR-LeilaNeural", "gender": "Female" },
+    { "name": "Antonio (Nam)", "voiceId": "pt-BR-AntonioNeural", "gender": "Male" }
+  ],
+  "Italian": [
+    { "name": "Elsa (Nữ)", "voiceId": "it-IT-ElsaNeural", "gender": "Female" },
+    { "name": "Isabella (Nữ)", "voiceId": "it-IT-IsabellaNeural", "gender": "Female" },
+    { "name": "Diego (Nam)", "voiceId": "it-IT-DiegoNeural", "gender": "Male" },
+    { "name": "Benigno (Nam)", "voiceId": "it-IT-BenignoNeural", "gender": "Male" }
+  ],
+  "Russian": [
+    { "name": "Svetlana (Nữ)", "voiceId": "ru-RU-SvetlanaNeural", "gender": "Female" },
+    { "name": "Dariya (Nữ)", "voiceId": "ru-RU-DariyaNeural", "gender": "Female" },
+    { "name": "Dmitry (Nam)", "voiceId": "ru-RU-DmitryNeural", "gender": "Male" }
+  ],
+  "Thai": [
+    { "name": "Premwadee (Nữ)", "voiceId": "th-TH-PremwadeeNeural", "gender": "Female" },
+    { "name": "Achara (Nữ)", "voiceId": "th-TH-AcharaNeural", "gender": "Female" },
+    { "name": "Niwat (Nam)", "voiceId": "th-TH-NiwatNeural", "gender": "Male" }
+  ],
+  "Indonesian": [
+    { "name": "Gadis (Nữ)", "voiceId": "id-ID-GadisNeural", "gender": "Female" },
+    { "name": "Ardi (Nam)", "voiceId": "id-ID-ArdiNeural", "gender": "Male" }
+  ],
+  "Hindi": [
+    { "name": "Swara (Nữ)", "voiceId": "hi-IN-SwaraNeural", "gender": "Female" },
+    { "name": "Madhur (Nam)", "voiceId": "hi-IN-MadhurNeural", "gender": "Male" }
+  ],
+  "Arabic": [
+    { "name": "Zariyah (Nữ)", "voiceId": "ar-SA-ZariyahNeural", "gender": "Female" },
+    { "name": "Hamed (Nam)", "voiceId": "ar-SA-HamedNeural", "gender": "Male" }
+  ],
+  "Dutch": [
+    { "name": "Colette (Nữ)", "voiceId": "nl-NL-ColetteNeural", "gender": "Female" },
+    { "name": "Fenna (Nữ)", "voiceId": "nl-NL-FennaNeural", "gender": "Female" },
+    { "name": "Maarten (Nam)", "voiceId": "nl-NL-MaartenNeural", "gender": "Male" }
+  ],
+  "Polish": [
+    { "name": "Agnieszka (Nữ)", "voiceId": "pl-PL-AgnieszkaNeural", "gender": "Female" },
+    { "name": "Zofia (Nữ)", "voiceId": "pl-PL-ZofiaNeural", "gender": "Female" },
+    { "name": "Marek (Nam)", "voiceId": "pl-PL-MarekNeural", "gender": "Male" }
+  ],
+  "Turkish": [
+    { "name": "Emel (Nữ)", "voiceId": "tr-TR-EmelNeural", "gender": "Female" },
+    { "name": "Ahmet (Nam)", "voiceId": "tr-TR-AhmetNeural", "gender": "Male" }
+  ]
+}
