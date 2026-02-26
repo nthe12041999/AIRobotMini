@@ -53,18 +53,18 @@ namespace AIChatBot.Services
             }
         }
 
-        public List<VoiceInfo> GetAvailableVoices(string language)
+        public List<VoiceInfoAI> GetAvailableVoices(string language)
         {
             if (_voiceMapping.TryGetValue(language, out var voices))
             {
-                return voices.Select(v => new VoiceInfo
+                return voices.Select(v => new VoiceInfoAI
                 {
                     Name = v.Name,
                     VoiceId = v.VoiceId,
                     Language = language
                 }).ToList();
             }
-            return new List<VoiceInfo>();
+            return new List<VoiceInfoAI>();
         }
 
         public List<string> GetAvailableLanguages()

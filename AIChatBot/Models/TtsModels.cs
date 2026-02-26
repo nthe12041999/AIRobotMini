@@ -16,7 +16,7 @@ namespace AIChatBot.Models
         public string ErrorMessage { get; set; } = string.Empty;
     }
 
-    public class VoiceInfo
+    public class VoiceInfoAI
     {
         public string Name { get; set; } = string.Empty;
         public string VoiceId { get; set; } = string.Empty;

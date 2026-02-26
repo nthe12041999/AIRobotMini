@@ -29,7 +29,10 @@ namespace AIChatBot.Services
                 {
                     AIProvider.Gemini => await ProcessWithGeminiAsync(prompt, settings),
                     AIProvider.DeepSeek => await ProcessWithDeepSeekAsync(prompt, settings),
-                    AIProvider.OpenAI => await ProcessWithOpenAIAsync(prompt, settings)
+                    AIProvider.Qwen => await ProcessWithQwenAsync(prompt, settings),
+                    AIProvider.OpenRouter => await ProcessWithOpenRouterAsync(prompt, settings),
+                    AIProvider.OpenAI => await ProcessWithOpenAIAsync(prompt, settings),
+                    _ => throw new NotSupportedException($"Provider {settings.Provider} is not supported")
                 };
             }
             catch (Exception ex)
@@ -63,10 +66,19 @@ namespace AIChatBot.Services
             var client = new OpenAIClient(new ApiKeyCredential(settings.ApiKey));
             var chatClient = client.GetChatClient(settings.Model);
 
-            var messages = new List<ChatMessage>
+            var messages = new List<ChatMessage>();
+            
+            // Add conversation history
+            foreach (var historyMsg in settings.History)
             {
-                new UserChatMessage(prompt)
-            };
+                if (historyMsg.Role.ToLower() == "user")
+                    messages.Add(new UserChatMessage(historyMsg.Content));
+                else if (historyMsg.Role.ToLower() == "assistant")
+                    messages.Add(new AssistantChatMessage(historyMsg.Content));
+            }
+            
+            // Add current message
+            messages.Add(new UserChatMessage(prompt));
 
             var options = new ChatCompletionOptions
             {
@@ -143,17 +155,28 @@ namespace AIChatBot.Services
             // Gemini temperature must be in range [0.0, 2.0]
             var temperature = Math.Clamp(settings.Temperature, 0.0, 2.0);
 
+            // Build conversation history for Gemini
+            var contentsList = new List<object>();
+            
+            foreach (var historyMsg in settings.History)
+            {
+                contentsList.Add(new
+                {
+                    role = historyMsg.Role.ToLower() == "assistant" ? "model" : "user",
+                    parts = new[] { new { text = historyMsg.Content } }
+                });
+            }
+            
+            // Add current message
+            contentsList.Add(new
+            {
+                role = "user",
+                parts = new[] { new { text = prompt } }
+            });
+
             var requestBody = new
             {
-                contents = new[]
-                {
-                    new {
-                        parts = new[]
-                        {
-                            new { text = prompt }
-                        }
-                    }
-                },
+                contents = contentsList,
                 generationConfig = new
                 {
                     temperature,
@@ -205,14 +228,23 @@ namespace AIChatBot.Services
         {
             var endpoint = "https://api.deepseek.com/chat/completions";
 
+            // Build message list with history
+            var messagesList = new List<object>
+            {
+                new { role = "system", content = "You are a helpful assistant." }
+            };
+            
+            foreach (var historyMsg in settings.History)
+            {
+                messagesList.Add(new { role = historyMsg.Role, content = historyMsg.Content });
+            }
+            
+            messagesList.Add(new { role = "user", content = prompt });
+
             var requestBody = new
             {
                 model = settings.Model,
-                messages = new[]
-                {
-                    new { role = "system", content = prompt },
-                    new { role = "user", content = prompt }
-                },
+                messages = messagesList,
                 temperature = settings.Temperature,
                 max_tokens = settings.MaxTokens,
                 stream = false
@@ -248,6 +280,145 @@ namespace AIChatBot.Services
                 {
                     Success = false,
                     ErrorMessage = "DeepSeek không trả về kết quả."
+                };
+            }
+
+            return new ChatGptResult
+            {
+                Success = true,
+                Content = output
+            };
+        }
+
+        private async Task<ChatGptResult> ProcessWithQwenAsync(string prompt, ChatGptSettings settings)
+        {
+            // Qwen API endpoint (Alibaba Cloud DashScope)
+            var endpoint = "https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation";
+
+            // Build message list with history
+            var messagesList = new List<object>
+            {
+                new { role = "system", content = "You are a helpful assistant." }
+            };
+            
+            foreach (var historyMsg in settings.History)
+            {
+                messagesList.Add(new { role = historyMsg.Role, content = historyMsg.Content });
+            }
+            
+            messagesList.Add(new { role = "user", content = prompt });
+
+            var requestBody = new
+            {
+                model = settings.Model,
+                input = new
+                {
+                    messages = messagesList
+                },
+                parameters = new
+                {
+                    temperature = settings.Temperature,
+                    max_tokens = settings.MaxTokens,
+                    result_format = "message"
+                }
+            };
+
+            // Use InvariantCulture to ensure correct decimal format
+            var jsonSettings = new JsonSerializerSettings { Culture = System.Globalization.CultureInfo.InvariantCulture };
+            var json = JsonConvert.SerializeObject(requestBody, jsonSettings);
+            using var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            using var request = new HttpRequestMessage(HttpMethod.Post, endpoint);
+            
+            request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {settings.ApiKey}");
+            request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
+            request.Content = httpContent;
+
+            var response = await _httpClient.SendAsync(request);
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            if (!response.IsSuccessStatusCode)
+            {
+                return new ChatGptResult
+                {
+                    Success = false,
+                    ErrorMessage = $"Qwen API error: {response.StatusCode} - {responseString}"
+                };
+            }
+
+            var result = JsonConvert.DeserializeObject<QwenResponse>(responseString);
+            var output = result?.Output?.Choices?.FirstOrDefault()?.Message?.Content;
+
+            if (string.IsNullOrEmpty(output))
+            {
+                return new ChatGptResult
+                {
+                    Success = false,
+                    ErrorMessage = "Qwen không trả về kết quả."
+                };
+            }
+
+            return new ChatGptResult
+            {
+                Success = true,
+                Content = output
+            };
+        }
+
+        private async Task<ChatGptResult> ProcessWithOpenRouterAsync(string prompt, ChatGptSettings settings)
+        {
+            // OpenRouter API endpoint (compatible with OpenAI format)
+            var endpoint = "https://openrouter.ai/api/v1/chat/completions";
+
+            // Build message list with history
+            var messagesList = new List<object>();
+            
+            foreach (var historyMsg in settings.History)
+            {
+                messagesList.Add(new { role = historyMsg.Role, content = historyMsg.Content });
+            }
+            
+            messagesList.Add(new { role = "user", content = prompt });
+
+            var requestBody = new
+            {
+                model = settings.Model,
+                messages = messagesList,
+                temperature = settings.Temperature,
+                max_tokens = settings.MaxTokens
+            };
+
+            // Use InvariantCulture to ensure correct decimal format
+            var jsonSettings = new JsonSerializerSettings { Culture = System.Globalization.CultureInfo.InvariantCulture };
+            var json = JsonConvert.SerializeObject(requestBody, jsonSettings);
+            using var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            using var request = new HttpRequestMessage(HttpMethod.Post, endpoint);
+            
+            request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {settings.ApiKey}");
+            request.Headers.TryAddWithoutValidation("HTTP-Referer", "https://github.com/nthe12041999/AIRobotMini");
+            request.Headers.TryAddWithoutValidation("X-Title", "AI Robot Chatbot");
+            request.Content = httpContent;
+
+            var response = await _httpClient.SendAsync(request);
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            if (!response.IsSuccessStatusCode)
+            {
+                return new ChatGptResult
+                {
+                    Success = false,
+                    ErrorMessage = $"OpenRouter API error: {response.StatusCode} - {responseString}"
+                };
+            }
+
+            var result = JsonConvert.DeserializeObject<OpenRouterResponse>(responseString);
+            var output = result?.Choices?.FirstOrDefault()?.Message?.Content;
+
+            if (string.IsNullOrEmpty(output))
+            {
+                return new ChatGptResult
+                {
+                    Success = false,
+                    ErrorMessage = "OpenRouter không trả về kết quả."
                 };
             }
 

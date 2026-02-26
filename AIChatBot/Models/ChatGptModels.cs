@@ -4,7 +4,9 @@ namespace AIChatBot.Models
     {
         OpenAI,
         Gemini,
-        DeepSeek
+        DeepSeek,
+        Qwen,
+        OpenRouter
     }
 
     public class ChatGptSettings
@@ -14,6 +16,13 @@ namespace AIChatBot.Models
         public string Model { get; set; } = "gpt-4o-2024-08-06";
         public double Temperature { get; set; } = 1.0;
         public int MaxTokens { get; set; } = 5000;
+        public List<ChatHistoryMessage> History { get; set; } = new List<ChatHistoryMessage>();
+    }
+
+    public class ChatHistoryMessage
+    {
+        public string Role { get; set; } = "user";
+        public string Content { get; set; } = string.Empty;
     }
 
     public class ChatGptResult
@@ -76,5 +85,42 @@ namespace AIChatBot.Models
     {
         public string? Type { get; set; }
         public string? Text { get; set; }
+    }
+
+    // Response models for Qwen (Alibaba Cloud)
+    public class QwenResponse
+    {
+        public QwenOutput? Output { get; set; }
+    }
+
+    public class QwenOutput
+    {
+        public List<QwenChoice>? Choices { get; set; }
+    }
+
+    public class QwenChoice
+    {
+        public QwenMessage? Message { get; set; }
+    }
+
+    public class QwenMessage
+    {
+        public string? Content { get; set; }
+    }
+
+    // Response models for OpenRouter
+    public class OpenRouterResponse
+    {
+        public List<OpenRouterChoice>? Choices { get; set; }
+    }
+
+    public class OpenRouterChoice
+    {
+        public OpenRouterMessage? Message { get; set; }
+    }
+
+    public class OpenRouterMessage
+    {
+        public string? Content { get; set; }
     }
 }

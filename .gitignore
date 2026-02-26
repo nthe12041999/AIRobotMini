@@ -1,49 +1,92 @@
-# API Keys
-config.js
-
-# Node
+# Node modules
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-package-lock.json
+pnpm-debug.log*
 
-# C# / .NET
-[Bb]in/
-[Oo]bj/
-[Dd]ebug/
-[Rr]elease/
+# Vite
+dist/
+dist-ssr/
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs
+*.log
+
+# OS
+Thumbs.db
+
+# .NET
+bin/
+obj/
 *.user
 *.suo
 *.cache
+*.dll
+*.exe
+*.pdb
+*.vspscc
+*.vssscc
 .vs/
-*.csproj.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.opendb
+*.VC.db
+*.VC.VC.opendb
+*.DotSettings.user
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.sln.docstates
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
 
 # Python
 __pycache__/
 *.py[cod]
-*.pyo
-*.pyd
+*$py.class
+*.so
 .Python
-venv/
 env/
+venv/
+ENV/
 *.egg-info/
-
-# OS
-.DS_Store
-Thumbs.db
-*.swp
-*.swo
-*~
-
-# IDE
-.vscode/
-.idea/
-*.code-workspace
-
-# Logs
-*.log
+.pytest_cache/
 
 # Temp files
 *.tmp
 *.temp
+*.bak
+*.swp
+*~
+
+# Config files with sensitive data
+config.js

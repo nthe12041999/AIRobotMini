@@ -2,6 +2,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddScoped<AIChatBot.Services.ITextToSpeechService, AIChatBot.Services.TextToSpeechService>();
+builder.Services.AddScoped<AIChatBot.Services.IChatGptService, AIChatBot.Services.ChatGptService>();
+
+// Add HttpClient for API calls
+builder.Services.AddHttpClient();
 
 // Add CORS
 builder.Services.AddCors(options =>
@@ -10,7 +14,8 @@ builder.Services.AddCors(options =>
     {
         policy.AllowAnyOrigin()
               .AllowAnyMethod()
-              .AllowAnyHeader();
+              .AllowAnyHeader()
+              .SetPreflightMaxAge(TimeSpan.FromHours(1)); // Cache preflight 1 giờ
     });
 });
 
@@ -30,7 +35,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors("AllowAll");
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection(); // Tắt HTTPS redirect để test
 
 app.UseAuthorization();
 
